@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { searchAction } from './actions/hnActions';
+import ResultContainer from './Components/resultContainer';
 import './App.css';
 
 class App extends Component {
@@ -23,8 +24,11 @@ class App extends Component {
   return (
    <div className="App">
     <label>Search</label>
-    <input onChange={this.handleChange} type="text" value={this.state.query}/>
-    <input onClick={this.handleClick} type="submit"/>
+    <div>
+        <input onChange={this.handleChange} type="text" value={this.state.query}/>
+        <input onClick={this.handleClick} type="submit"/>
+    </div>
+    <ResultContainer results={this.props.hnState.results}/>
    </div>
   );
  }
@@ -38,7 +42,7 @@ const mapDispatchToProps = dispatch => {
 }
 
 const mapStateToProps = state => ({
-    ...state
+    hnState: state.hnReducer
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(App)

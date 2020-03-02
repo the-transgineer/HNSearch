@@ -8,10 +8,10 @@ export default (state = {}, action) => {
      } else {
        newState.history = [action.query];
      }
-      return newState;
+      return Object.assign({}, newState);
      case 'RECIEVE_ACTION':
       newState.results = action.data; 
-      return newState;
+      return Object.assign({}, newState);
      default:
       return state
     }
