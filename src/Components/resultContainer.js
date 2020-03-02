@@ -4,9 +4,8 @@ import { connect } from 'react-redux';
 
 class resultsContainer extends Component {
     render() {
-        console.log(this);
         return (
-            <div>
+            <div className="resultContainer">
                 {this.props.results && this.props.results.map( (r, i) => (
                     <Result key={i} result={r}/>
                 ))}
