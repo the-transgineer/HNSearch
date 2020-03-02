@@ -8,10 +8,11 @@ export function recieveAction(data) {
   return {type: types.RECIEVE_ACTION, data: data}
 }
   
-export const searchAction = dispatch => {
+export function searchAction(query){
+    console.log(query);
     return function(dispatch) {
       dispatch(requesAction());
-      axios.get('http://hn.algolia.com/api/v1/search?query=test')
+      axios.get(`http://hn.algolia.com/api/v1/search?query=${query}`)
         .then(response => {
           return response.data.hits;
         })

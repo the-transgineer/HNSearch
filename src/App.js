@@ -4,12 +4,27 @@ import { searchAction } from './actions/hnActions';
 import './App.css';
 
 class App extends Component {
+ constructor(props) {
+     super(props);
+     this.state = {
+         query: ''
+     }
+ }
+ handleChange = e => {
+     this.setState({
+         query: e.target.value
+     });
+ }
+
+ handleClick = () => {
+     this.props.searchAction(this.state.query);
+ }
  render() {
   return (
    <div className="App">
     <label>Search</label>
-    <input type="text"/>
-    <input onClick={this.props.searchAction} type="submit"/>
+    <input onChange={this.handleChange} type="text" value={this.state.query}/>
+    <input onClick={this.handleClick} type="submit"/>
    </div>
   );
  }
@@ -18,7 +33,7 @@ class App extends Component {
 
 const mapDispatchToProps = dispatch => {
     return {
-        searchAction: () => dispatch(searchAction())
+        searchAction: (query) => dispatch(searchAction(query))
     }
 }
 
